@@ -35,6 +35,7 @@ namespace DotNetCore5Crud
 
 
             services.AddScoped<IMovies, MoviesRep>();
+            services.AddScoped<IGenries, GenriesRep>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

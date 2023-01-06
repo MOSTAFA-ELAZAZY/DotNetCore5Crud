@@ -1,4 +1,5 @@
 ﻿using DotNetCore5Crud.BL.Interface;
+using DotNetCore5Crud.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,11 @@ namespace DotNetCore5Crud.Controllers
     public class MoviesController : Controller
     {
         private IMovies movies;
-        public MoviesController(IMovies movies)
+        private IGenries genries;
+        public MoviesController(IMovies movies,IGenries genries)
         {
             this.movies = movies;
+            this.genries = genries;
         }
 
         public IActionResult Index()
@@ -21,6 +24,15 @@ namespace DotNetCore5Crud.Controllers
             return View(data);
         }
 
-       
+
+        public IActionResult Create()
+        {
+            var ViewModel = new MovieFormViewModel
+            {
+                Genres = genries.Get()
+            };
+            return View();
+        }
+
     }
 }

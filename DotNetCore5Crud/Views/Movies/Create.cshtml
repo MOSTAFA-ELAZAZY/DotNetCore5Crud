@@ -1,0 +1,24 @@
+﻿@model MovieFormViewModel
+
+@{ 
+    ViewBag.Title = "MOvie From";
+
+}
+
+<h2>
+    Create Movir
+</h2>
+
+<hr />
+
+<section>
+    <div class="col-md-4">
+        <form method="post" asp-action="Create">
+            <div class="form-group">
+                <label class="text-muted" asp-for="Title"></label>
+                <input type="text" class="form-control" asp-for="Title" maxlength="250"/>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</section>
