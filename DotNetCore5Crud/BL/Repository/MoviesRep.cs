@@ -1,6 +1,8 @@
-﻿   using DotNetCore5Crud.BL.Interface;
+﻿using AutoMapper;
+using DotNetCore5Crud.BL.Interface;
 using DotNetCore5Crud.DAL;
 using DotNetCore5Crud.Models;
+using DotNetCore5Crud.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,19 @@ namespace DotNetCore5Crud.BL.Repository
     public class MoviesRep : IMovies
     {
         private readonly ApplicationDbContext _applicationDbContext;
+        private readonly IMapper mapper;
 
-        public MoviesRep(ApplicationDbContext applicationDbContext)
+        public MoviesRep(ApplicationDbContext applicationDbContext, IMapper mapper)
         {
             this._applicationDbContext = applicationDbContext;
+            this.mapper = mapper;
+        }
+
+        public void Add(MovieFormViewModel movieFormViewModel)
+        {
+            var data = mapper.Map<Movie>(movieFormViewModel);
+            _applicationDbContext.Movies.Add(data);
+            _applicationDbContext.SaveChanges();
         }
 
         public IEnumerable<Movie> Get()

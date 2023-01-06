@@ -33,6 +33,7 @@ namespace DotNetCore5Crud
 
             // services.AddDbContext<ApplicationDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IMovies, MoviesRep>();
             services.AddScoped<IGenries, GenriesRep>();

@@ -11,9 +11,9 @@
 
 <hr />
 
-<section class="row justify-content-between" >
+<section class="row justify-content-between">
     <div class="col-md-4">
-        <form method="post" asp-action="Create">
+        <form method="post" asp-action="Create" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="text-muted" asp-for="Title"></label>
                 <input type="text" class="form-control" asp-for="Title" maxlength="250" />
@@ -28,12 +28,12 @@
             </div>
             <div class="form-group w-50">
                 <label class="text-muted" asp-for="Year"></label>
-                <input type="number" class="form-control" asp-for="Year" value="" />
+                <input type="number" class="form-control" asp-for="Year" value="@(Model.Year > 0 ? Model.Year : string.Empty) " />
                 <span asp-validation-for="Year" class="text-danger"></span>
             </div>
             <div class="form-group w-50">
                 <label class="text-muted" asp-for="Rate"></label>
-                <input type="number" class="form-control" asp-for="Rate" value="" />
+                <input type="number" class="form-control" asp-for="Rate" value="@(Model.Rate > 0 ? Model.Rate : string.Empty) "/>
                 <span asp-validation-for="Rate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -62,7 +62,7 @@
             <img src="" alt="Poster" class="img-thumbnail" />
 
         </div>
-       
+
     </div>
 
 </section>
@@ -70,7 +70,7 @@
 
 
 @section Scripts {
-   
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script>
         $(document).ready(function () {
             $('#Poster').on('change', function () {
@@ -81,14 +81,14 @@
                 posterContainer.removeClass('d-none');
                 posterContainer.find('img').attr('src', image);
             });
-            //$('#Year').datepicker({
-            //    format: 'yyyy',
-            //    viewMode: 'years',
-            //    minViewMode: 'years',
-            //    autoclose: true,
-            //    startDate: new Date('1950-01-01'),
-            //    endDate: new Date()
-            //});
+            $('#Year').datepicker({
+                format: 'yyyy',
+                viewMode: 'years',
+                minViewMode: 'years',
+                autoclose: true,
+                startDate: new Date('1950-01-01'),
+                endDate: new Date()
+            });
         });
     </script>
 }
