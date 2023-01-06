@@ -16,6 +16,7 @@ namespace DotNetCore5Crud.ViewModels
         public double Rate { get; set; }
         [Required, StringLength(2500)]
         public string StoreLine { get; set; }
+        [Display(Name = "Choose Poster....")]
         public byte[] Poster { get; set; }
         [Display(Name ="Genre")]
         public byte GenreId { get; set; }

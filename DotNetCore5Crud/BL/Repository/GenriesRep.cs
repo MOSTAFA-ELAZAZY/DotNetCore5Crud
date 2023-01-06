@@ -17,7 +17,7 @@ namespace DotNetCore5Crud.BL.Repository
         }
         public IEnumerable<Genre> Get()
         {
-            var data = _context.Genres.ToList();
+            var data = _context.Genres.OrderBy(m=>m.Name).ToList();
             return data;
         }
     }

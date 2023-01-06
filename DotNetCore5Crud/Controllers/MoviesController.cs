@@ -31,7 +31,7 @@ namespace DotNetCore5Crud.Controllers
             {
                 Genres = genries.Get()
             };
-            return View();
+            return View(ViewModel);
         }
 
     }
