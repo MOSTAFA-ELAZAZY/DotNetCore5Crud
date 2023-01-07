@@ -12,5 +12,9 @@ namespace DotNetCore5Crud.BL.Interface
         IEnumerable<Movie> Get();
 
         public void Add(MovieFormViewModel movieFormViewModel);
+
+        public MovieFormViewModel GetbyId(int id);
+
+        public void Edit(MovieFormViewModel MovieFormViewModel);
     }
 }

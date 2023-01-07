@@ -8,7 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NToastNotify;
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,8 +34,16 @@ namespace DotNetCore5Crud
             services.AddDbContextPool<ApplicationDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // services.AddDbContext<ApplicationDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
 
-            services.AddAutoMapper(typeof(Startup));
+            {
+                ProgressBar = true,
+                PositionClass=ToastPositions.TopRight,
+                PreventDuplicates=true,
+                CloseButton=true
+                
+            }) ;
+                services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IMovies, MoviesRep>();
             services.AddScoped<IGenries, GenriesRep>();
