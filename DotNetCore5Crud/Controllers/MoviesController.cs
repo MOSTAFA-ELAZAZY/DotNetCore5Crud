@@ -70,7 +70,7 @@ namespace DotNetCore5Crud.Controllers
             }
 
             using var DataStrean = new MemoryStream();
-            Poster.CopyTo(DataStrean);
+            Poster.CopyToAsync(DataStrean);
 
             model.Poster = DataStrean.ToArray();
 

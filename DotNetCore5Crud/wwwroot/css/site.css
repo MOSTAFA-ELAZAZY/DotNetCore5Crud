@@ -85,3 +85,15 @@ input ::-webkit-outer-spin-button{
 input[type=number]{
     -moz-appearance:textfield;
 }
+
+.Poster{
+    min-height : 236px;
+    background-position: center;
+    background-size : 100%; 
+    transition: all 0.3s ease-in-out;
+}
+
+    .Poster:hover {
+        background-size: 120%;
+        transition: all 0.3s ease-in-out;
+    }
