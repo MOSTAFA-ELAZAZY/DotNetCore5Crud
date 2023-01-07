@@ -16,5 +16,7 @@ namespace DotNetCore5Crud.BL.Interface
         public MovieFormViewModel GetbyId(int id);
 
         public void Edit(MovieFormViewModel MovieFormViewModel);
+        public void Delete(int Id);
+
     }
 }

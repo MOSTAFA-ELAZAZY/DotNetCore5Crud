@@ -1,6 +1,7 @@
 ﻿using DotNetCore5Crud.BL.Interface;
 using DotNetCore5Crud.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,10 +16,12 @@ namespace DotNetCore5Crud.Controllers
         private IGenries genries;
         private List<string> _AllowedExtintos = new List<string> { ".jpg", ".png" };
         private long _MaxSize = 1048576;
-        public MoviesController(IMovies movies,IGenries genries)
+        private readonly IToastNotification _toastNotification;
+        public MoviesController(IMovies movies,IGenries genries, IToastNotification _toastNotification)
         {
             this.movies = movies;
             this.genries = genries;
+            this._toastNotification = _toastNotification;
         }
 
         public IActionResult Index()
@@ -27,6 +30,11 @@ namespace DotNetCore5Crud.Controllers
             return View(data);
         }
 
+        public IActionResult Delete(int id)
+        {
+            movies.Delete(id);
+            return RedirectToAction("Index");
+        }
 
         public IActionResult Create()
         {
@@ -76,6 +84,7 @@ namespace DotNetCore5Crud.Controllers
             model.Poster = DataStrean.ToArray();
 
             movies.Add(model);
+            _toastNotification.AddSuccessToastMessage("Added Succes");
             return RedirectToAction("Index");
         }
 
@@ -131,6 +140,7 @@ namespace DotNetCore5Crud.Controllers
             }
 
             movies.Edit(model);
+            _toastNotification.AddSuccessToastMessage("Edit Succes");
             return RedirectToAction("Index");
         }
 

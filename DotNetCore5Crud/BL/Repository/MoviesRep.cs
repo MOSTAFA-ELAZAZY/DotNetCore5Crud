@@ -28,6 +28,13 @@ namespace DotNetCore5Crud.BL.Repository
             _applicationDbContext.SaveChanges();
         }
 
+        public void Delete(int Id)
+        {
+            var oldData = _applicationDbContext.Movies.Find(Id);
+            _applicationDbContext.Movies.Remove(oldData);
+            _applicationDbContext.SaveChanges();
+        }
+
         public void Edit(MovieFormViewModel MovieFormViewModel)
         {
             var data = mapper.Map<Movie>(MovieFormViewModel);
@@ -37,7 +44,7 @@ namespace DotNetCore5Crud.BL.Repository
 
         public IEnumerable<Movie> Get()
         {
-            var Movies = _applicationDbContext.Movies.ToList();
+            var Movies = _applicationDbContext.Movies.OrderByDescending(a=>a.Rate).ToList();
             return Movies;
         }
 
